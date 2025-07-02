@@ -1,10 +1,14 @@
-# Description
-Place the following data inside this folder:
-CelebA-Test (256x256)
-CelebA-Test (512x512)
-CelebA-Test LQ (512x512)
-LFW-Test
-WIDER-Test (512×512)
-WebPhoto-Test (512×512)
-CelebAdult-Test (512×512)
-FFHQ-512 (512×512)
+## 📂 Dataset directory structure
+
+Place the following datasets inside **this folder** before running any scripts:
+
+| Dataset name               | Resolution | Notes |
+|----------------------------|------------|-------|
+| CelebA-Test (256)          | 256 × 256  | Ground-truth HQ faces |
+| CelebA-Test (512)          | 512 × 512  | Ground-truth HQ faces |
+| CelebA-Test LQ (512)       | 512 × 512  | Low-quality inputs |
+| LFW-Test                   | 512 × 512  | Real-world LQ faces |
+| WIDER-Test                 | 512 × 512  | Real-world LQ faces |
+| WebPhoto-Test              | 512 × 512  | Real-world LQ faces |
+| CelebAdult-Test            | 512 × 512  | Real-world LQ faces |
+| FFHQ-512                   | 512 × 512  | Unseen HQ reference set |
