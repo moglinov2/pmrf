@@ -1,7 +1,7 @@
 <div align="center">
 
 # Posterior-Mean Rectified Flow (PMRF)  
-Reproducing the ICLR 2025 paper  
+Reproducing the results from the ICLR 2025 paper  
 *“Posterior-Mean Rectified Flow: Towards Minimum-MSE Photo-Realistic Image Restoration”*
 
 [[Paper]](https://arxiv.org/abs/2410.00418) • [[Project Page]](https://pmrf-ml.github.io/) • [[Demo]](https://huggingface.co/spaces/ohayonguy/PMRF)
