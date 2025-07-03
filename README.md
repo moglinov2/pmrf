@@ -59,3 +59,10 @@ sed -i 's/from torchvision.transforms.functional_tensor import rgb_to_grayscale/
 # show the patched line for confirmation
 grep -n "rgb_to_grayscale" -A0 -B1 "$FILE" | head
 ```
+
+## Copying repository into Google Drive
+Google Colab has the problem that one has to load your repository everytime one restarts the kernel. That is why i copied my whole repository into Google Drive and with the following simple line I could load my code very easily:
+```
+from google.colab import drive
+drive.mount("/content/drive")
+```
