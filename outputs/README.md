@@ -6,7 +6,7 @@ For every benchmark test-set we keep two sub-folders:
 
 | Sub-folder | Contents | Notes |
 |------------|----------|-------|
-| `restored_images/` | Final PMRF outputs $\hat X_0$ (photo-realistic, low-distortion) | Obtained after **rectified-flow refinement** with the default setting `K = 100` steps. |
+| `restored_images/` | Final PMRF outputs $\hat X_0$ (photo-realistic, low-distortion) | Obtained after **rectified-flow refinement** with the default setting `K = 25` steps. |
 | `restored_images_posterior_mean/` | Stage-1 estimates $\hat X^{\*}$ (posterior mean / MMSE) | Distortion-optimal but typically over-smooth – serves as the baseline “posterior mean” in the paper. |
 
 The five dataset-specific folders are:
