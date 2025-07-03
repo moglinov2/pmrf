@@ -78,12 +78,13 @@ drive.mount("/content/drive")
 ```bash
 data/
 ├── CelebA-Test/                # 512×512 HQ faces  (3 000)
-├── CelebA-Test-LQ/             # same images, degraded
+├── CelebA-Test-LQ/             # same images, degraded (3 000)
 ├── LFW-Test/                   # 512×512 (1 711)
 ├── WIDER-Test/                 # 512×512 (970)
 ├── WebPhoto-Test/              # 512×512 (407)
 ├── CelebAdult-Test/            # 512×512 (180)
-├── FFHQ-512/                   # 512×512 (10 000)
-└── ffhq256/                    # down-sampled for controlled experiments
+├── cropped_faces/              # includes FFHQ images
+  ├── ffhq512/                  # 512×512 (10 000)
+  └── ffhq256/                  # 256×256 down-sampled for controlled experiments (10 000)
 ```
 
