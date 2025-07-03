@@ -105,6 +105,9 @@ data/
 ```
 
 ## How to run
+
+**PLEASE LOOK INTO THE `pmrf_papers_data.ipynb` FILE!!!** it contains every step needed to reproduce my results. For the unprocessed outputs from my evaluation runs, see the `Paper Reconstruction Results.docx` file, where I’ve included the raw results as originally generated.
+
 ### 1. Blind face restoration (CelebA-Test example)
 Inference:
 ```bash
