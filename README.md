@@ -68,10 +68,26 @@ drive.mount("/content/drive")
 ## Data
 | What                                                                        | Where to download                                                                                                          | Where to place                         |
 | --------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| **Pre-trained PMRF** for blind face restoration                             | [https://drive.google.com/drive/folders/1dfjZATcQ451uhvFH42tKnfMNHRkL6N_A]                                                 | any path, or leave the default         |
+| **Pre-trained PMRF** for blind face restoration                             | [https://drive.google.com/drive/folders/1dfjZATcQ451uhvFH42tKnfMNHRkL6N_A]                                                 | keep structure shown below             |
 | **Controlled-experiment checkpoints** (PMRF + 4 baselines × 4 degradations) | [https://drive.google.com/drive/folders/1dfjZATcQ451uhvFH42tKnfMNHRkL6N_A]                                                 | `checkpoints/controlled_experiments/…` |
 | **Evaluation metric models** (`resnet18_110.pth`, `alignment_WFLW_4HG.pth`) | [https://drive.google.com/drive/folders/1k3RCSliF6PsujCMIdCD1hNM63EozlDIZ]                                                 | `evaluation/metrics_ckpt/`             |
 | **ALL TEST DATA SETS** (`data/`)                                            | [https://drive.google.com/drive/folders/10ivacNpoFqq3K9xPeF1IHmrKVU7ZNRIG?usp=sharing]                                     | keep structure shown below             |
+
+```bash
+checkpoints/
+├── blind_face_restoration_pmrf.ckpt    # Checkpoint of our blind face image restoration model.
+├── swinir_restoration512_L1.pth    # Checkpoint of the SwinIR model trained by DifFace
+├── controlled_experiments/     # Checkpoints for the controlled experiments
+│   ├── colorization_gaussian_noise_025/
+│   │   ├── pmrf/
+│   │   │   └── epoch=999-step=273000.ckpt
+│   │   ├── mmse/
+│   │   │   └── epoch=999-step=273000.ckpt
+.   .   .
+.   .   .
+.   .   .
+
+```
 
 ```bash
 data/
