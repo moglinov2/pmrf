@@ -67,7 +67,7 @@ from google.colab import drive
 drive.mount("/content/drive")
 ```
 
-#
+##
 | What                                                                        | Where to download                                                                                                          | Where to place                         |
 | --------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
 | **Pre-trained PMRF** for blind face restoration                             | [https://drive.google.com/drive/folders/1dfjZATcQ451uhvFH42tKnfMNHRkL6N_A]                                                 | any path, or leave the default         |
@@ -82,9 +82,49 @@ data/
 ├── LFW-Test/                   # 512×512 (1 711)
 ├── WIDER-Test/                 # 512×512 (970)
 ├── WebPhoto-Test/              # 512×512 (407)
-├── CelebAdult-Test/            # 512×512 (180)
-├── cropped_faces/              # includes FFHQ images
+├── CelebChild-Test/            # inludes Adult and Child images
+  ├── Child                     # 512×512 (180)
+  └── Adult/                    # 512×512 (180)
+└── cropped_faces/              # includes FFHQ images
   ├── ffhq512/                  # 512×512 (10 000)
   └── ffhq256/                  # 256×256 down-sampled for controlled experiments (10 000)
 ```
+
+## How to run
+### 1. Blind face restoration (CelebA-Test example)
+Inference:
+```bash
+python inference.py \
+  --ckpt_path ./checkpoints/blind_face_restoration_pmrf.ckpt \
+  --lq_data_path ./data/celeba_512_validation_lq \
+  --output_dir ./outputs/celeba512_pmrf \
+  --batch_size 64 \
+  --num_flow_steps 25
+```
+Change the paths if you want to run it on different data.
+
+Evaluation:
+```bash
+python compute_metrics_blind.py \
+  --parent_ffhq_512_path ../data/cropped_faces \
+  --rec_path              ../outputs/celeba512_pmrf/restored_images \
+  --gt_path               ../data/celeba_512_validation
+```
+
+### 2. Controlled experiments
+Inference:
+```bash
+bash test.sh
+```
+Adjust --test_data_root in test.sh to the path of the CelebA-Test 256x256 images, and adjust --degradation and --ckpt_path to the type of degradation you wish to assess and the corresponding model checkpoint.
+
+Evaluation:
+```bash
+python compute_metrics_controlled_experiments.py \
+  --parent_ffhq_256_path ../data/cropped_faces \
+  --rec_path              ../controlled_experiments_results/num_flow_steps_5/colorization_gaussian_noise_025/mmse/xhat \
+  --gt_path               ../data/celeba_256_test
+```
+Adjust --rec_path if you want to run it on different algorithms.
+
 
