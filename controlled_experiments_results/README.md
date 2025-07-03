@@ -8,7 +8,7 @@ This directory contains the outputs of the four controlled restoration tasks
 
 ## 1️⃣ Top-level: `num_flow_steps_{K}`
 
-Each folder corresponds to the total number of rectified-flow inference steps \(K\in\{5,10,20,100\}\) used by all methods in that run.  
+Each folder corresponds to the total number of rectified-flow inference steps $K\in\{5,10,20,100\}$ used by all methods in that run.  
 
 ---
 
