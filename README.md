@@ -67,3 +67,23 @@ from google.colab import drive
 drive.mount("/content/drive")
 ```
 
+#
+| What                                                                        | Where to download                                                                                                          | Where to place                         |
+| --------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| **Pre-trained PMRF** for blind face restoration                             | [https://drive.google.com/drive/folders/1dfjZATcQ451uhvFH42tKnfMNHRkL6N_A]                                                 | any path, or leave the default         |
+| **Controlled-experiment checkpoints** (PMRF + 4 baselines × 4 degradations) | [https://drive.google.com/drive/folders/1dfjZATcQ451uhvFH42tKnfMNHRkL6N_A]                                                 | `checkpoints/controlled_experiments/…` |
+| **Evaluation metric models** (`resnet18_110.pth`, `alignment_WFLW_4HG.pth`) | [https://drive.google.com/drive/folders/1k3RCSliF6PsujCMIdCD1hNM63EozlDIZ]                                                 | `evaluation/metrics_ckpt/`             |
+| **All test data sets** (`data/`)                                            | [https://drive.google.com/drive/folders/10ivacNpoFqq3K9xPeF1IHmrKVU7ZNRIG?usp=sharing]                                     | keep structure shown below             |
+
+```bash
+data/
+├── CelebA-Test/                # 512×512 HQ faces  (3 000)
+├── CelebA-Test-LQ/             # same images, degraded
+├── LFW-Test/                   # 512×512 (1 711)
+├── WIDER-Test/                 # 512×512 (970)
+├── WebPhoto-Test/              # 512×512 (407)
+├── CelebAdult-Test/            # 512×512 (180)
+├── FFHQ-512/                   # 512×512 (10 000)
+└── ffhq256/                    # down-sampled for controlled experiments
+```
+
