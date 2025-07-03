@@ -125,6 +125,19 @@ python compute_metrics_controlled_experiments.py \
   --rec_path              ../controlled_experiments_results/num_flow_steps_5/colorization_gaussian_noise_025/mmse/xhat \
   --gt_path               ../data/celeba_256_test
 ```
-Adjust --rec_path if you want to run it on different algorithms.
+Adjust --rec_path if you want to run it on different algorithms. *Repeat for other K values or degradation folders as needed.*
 
+## Citation
+Paper citation:
+```
+@inproceedings{
+    ohayon2025posteriormean,
+    title={Posterior-Mean Rectified Flow: Towards Minimum {MSE} Photo-Realistic Image Restoration},
+    author={Guy Ohayon and Tomer Michaeli and Michael Elad},
+    booktitle={The Thirteenth International Conference on Learning Representations},
+    year={2025},
+    url={https://openreview.net/forum?id=hPOt3yUXii}
+}
+```
 
+Code is MIT-licensed and re-uses components from BasicSR, SwinIR, VQFR, DifFace and k-diffusion (see original licenses in each folder).
