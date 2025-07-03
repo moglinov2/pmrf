@@ -61,8 +61,9 @@ grep -n "rgb_to_grayscale" -A0 -B1 "$FILE" | head
 ```
 
 ## Copying repository into Google Drive
-Google Colab has the problem that one has to load your repository everytime one restarts the kernel. That is why i copied my whole repository into Google Drive and with the following simple line I could load my code very easily:
+In Google Colab, the runtime resets every time you restart the kernel, which means you normally have to re-clone or reload your repository on each session. To avoid that extra step, I synced my entire repo to Google Drive—and now I can pull in my code with a single line:
 ```
 from google.colab import drive
 drive.mount("/content/drive")
 ```
+
