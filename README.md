@@ -68,12 +68,10 @@ drive.mount("/content/drive")
 ## Data
 | What                                                                        | Where to download                                                                                                          | Where to place                         |
 | --------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| **Pre-trained PMRF** for blind face restoration                             | [https://drive.google.com/drive/folders/1dfjZATcQ451uhvFH42tKnfMNHRkL6N_A]                                                 | keep structure shown below
-`checkpoints/…`  |
-| **Controlled-experiment checkpoints** (PMRF + 4 baselines × 4 degradations) | [https://drive.google.com/drive/folders/1dfjZATcQ451uhvFH42tKnfMNHRkL6N_A]                                                 | keep structure shown below
-`checkpoints/controlled_experiments/…` |
+| **Pre-trained PMRF** for blind face restoration                             | [https://drive.google.com/drive/folders/1dfjZATcQ451uhvFH42tKnfMNHRkL6N_A]                                                 | keep structure shown below `checkpoints/…`  |
+| **Controlled-experiment checkpoints** (PMRF + 4 baselines × 4 degradations) | [https://drive.google.com/drive/folders/1dfjZATcQ451uhvFH42tKnfMNHRkL6N_A]                                                 | keep structure shown below `checkpoints/controlled_experiments/…` |
 | **Evaluation metric models** (`resnet18_110.pth`, `alignment_WFLW_4HG.pth`) | [https://drive.google.com/drive/folders/1k3RCSliF6PsujCMIdCD1hNM63EozlDIZ]                                                 | `evaluation/metrics_ckpt/`             |
-| **ALL TEST DATA SETS** (`data/`)                                            | [https://drive.google.com/drive/folders/10ivacNpoFqq3K9xPeF1IHmrKVU7ZNRIG?usp=sharing]                                     | keep structure shown below             |
+| **ALL TEST DATA SETS** (`data/`)                                            | [https://drive.google.com/drive/folders/10ivacNpoFqq3K9xPeF1IHmrKVU7ZNRIG?usp=sharing]                                     | keep structure shown below `data/…`            |
 
 ```bash
 checkpoints/
