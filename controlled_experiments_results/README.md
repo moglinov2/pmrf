@@ -38,21 +38,3 @@ Within *each* degradation folder you’ll find five method subfolders:
 | `posterior_conditioned_on_y/`    | Flow conditioned on $Y$ (degraded input)   |
 
 Each of these contains a directory of PNG files named exactly as the input IDs (so you can align them with your degraded and ground-truth images).  
-
----
-
-## 4️⃣ Quick Preview
-
-To display a random batch of PMRF outputs for the colorization task at \(K=10\), for example:
-
-```bash
-python - <<'PY'
-import glob, random, matplotlib.pyplot as plt
-from PIL import Image
-
-# pick 9 random files
-imgs = glob.glob('num_flow_steps_10/colorization_gaussian_noise_025/pmrf/*.png')
-for f in random.sample(imgs, 9):
-    plt.imshow(Image.open(f)); plt.axis('off')
-plt.tight_layout(); plt.show()
-PY
