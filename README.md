@@ -23,7 +23,9 @@ This fork **only contains the code, checkpoints and evaluation scripts** needed 
 
 ---
 
-## ⚙️ Quick Colab install (CPU or single GPU)
+## ⚙️ Quick Colab install
+
+I worked inside Google Colab and that is how I installed all necessary dependencies.
 
 ```bash
 !pip install -q condacolab
