@@ -33,9 +33,9 @@ Within *each* degradation folder you’ll find five method subfolders:
 |----------------------------------|----------------------------------------------|
 | `mmse/`                          | Posterior mean (Stage-1 predictor; low-distortion) |
 | `naive_flow/`                    | “Flow from Y” (naïve posterior sampling)     |
-| `pmrf/`                          | PMRF output \(\hat X_0\)                     |
-| `posterior_conditioned_on_mmse/` | Flow conditioned on \(\hat X^*\) (X\* = MMSE) |
-| `posterior_conditioned_on_y/`    | Flow conditioned on \(Y\) (degraded input)   |
+| `pmrf/`                          | PMRF output $\hat X_0$                     |
+| `posterior_conditioned_on_mmse/` | Flow conditioned on $\hat X^{\*}$ (X\* = MMSE) |
+| `posterior_conditioned_on_y/`    | Flow conditioned on $Y$ (degraded input)   |
 
 Each of these contains a directory of PNG files named exactly as the input IDs (so you can align them with your degraded and ground-truth images).  
 
