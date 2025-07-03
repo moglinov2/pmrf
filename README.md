@@ -3,7 +3,6 @@
 # Posterior-Mean Rectified Flow (PMRF)  
 Reproducing the ICLR 2025 paper  
 *“Posterior-Mean Rectified Flow: Towards Minimum-MSE Photo-Realistic Image Restoration”*
-*Original Links:*
 
 [[Paper]](https://arxiv.org/abs/2410.00418) • [[Project Page]](https://pmrf-ml.github.io/) • [[Demo]](https://huggingface.co/spaces/ohayonguy/PMRF)
 
@@ -44,4 +43,19 @@ condacolab.install()        # Colab will restart itself once this finishes
 !pip install lpips==0.1.4
 !pip install piq==0.8.0
 !pip install huggingface_hub==0.24.5
+```
 
+### Patching files
+```bash
+# Find Basicsr’s install location → patch the bad import
+FILE=$(python - <<'PY'
+import importlib.metadata, pathlib, sys
+dist = importlib.metadata.distribution("basicsr")
+print(pathlib.Path(dist.locate_file("basicsr/data/degradations.py")))
+PY
+)
+echo "Patching $FILE ..."
+sed -i 's/from torchvision.transforms.functional_tensor import rgb_to_grayscale/from torchvision.transforms.functional import rgb_to_grayscale/' "$FILE"
+# show the patched line for confirmation
+grep -n "rgb_to_grayscale" -A0 -B1 "$FILE" | head
+```
