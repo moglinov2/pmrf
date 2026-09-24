@@ -1,4 +1,4 @@
-<div align="center">
+[<div align="center">
 
 # Photo-Realistic Image Restoration via Posterior-Mean Rectified Flow
 
@@ -323,4 +323,4 @@ To refer to the thesis itself:
 
 ## License and acknowledgements
 
-This repository builds on the [official PMRF implementation](https://github.com/ohayonguy/PMRF) by Guy Ohayon. The code is MIT-licensed and re-uses components from BasicSR, SwinIR, VQFR, DifFace and k-diffusion (see the original licenses in each folder).
+This repository builds on the [official PMRF implementation](https://github.com/ohayonguy/PMRF) by Guy Ohayon. The code is MIT-licensed and re-uses components from BasicSR, SwinIR, VQFR, DifFace and k-diffusion (see the original licenses in each folder).](https://github.com/login?client_id=01ab8ac9400c4e429b23&return_to=%2Flogin%2Foauth%2Fauthorize%3Fclient_id%3D01ab8ac9400c4e429b23%26code_challenge%3DtBSfpIIw0kR50NgqZywFT0MLgHFfbk4djD2jVPPLUZA%26code_challenge_method%3DS256%26prompt%3Dselect_account%26redirect_uri%3Dhttps%253A%252F%252Fvscode.dev%252Fredirect%26scope%3Dread%253Auser%2Brepo%2Buser%253Aemail%2Bworkflow%26state%3Dhttp%253A%252F%252F127.0.0.1%253A50411%252Fcallback%253Fnonce%253D9nKqowBzUNWwAAi9sMDYXw%25253D%25253D)
