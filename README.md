@@ -1,4 +1,4 @@
-[<div align="center">
+<div align="center">
 
 # Photo-Realistic Image Restoration via Posterior-Mean Rectified Flow
 
@@ -119,8 +119,6 @@ In addition, `TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD=1` restores the older `torch.load
 
 ## 📦 Data and checkpoints
 
-### Experiments I and II
-
 | What | Where to download | Where to place |
 |------|-------------------|----------------|
 | **Pre-trained PMRF** for blind face restoration | [https://drive.google.com/drive/folders/1dfjZATcQ451uhvFH42tKnfMNHRkL6N_A] | keep structure shown below `checkpoints/…` |
@@ -156,30 +154,24 @@ data/
 └── cropped_faces/              # FFHQ reference sets
   ├── ffhq512/                  # 512×512 (10 000)
   └── ffhq256/                  # 256×256, down-sampled for the controlled experiments (10 000)
+├── ImageNet-mini/              # center-cropped to 128×128
+  ├── train/                    # 128×128 (34 745)
+  ├── val/                      # 128×128 (3 923)
+  └── test/                     # 128×128 (5 000), flat folder
+├── UT Zappos50k/               # center-cropped to 128×128
+  ├── train/                    # 128×128 (40 066)
+  ├── val/                      # 128×128 (5 000)
+  └── test/                     # 128×128 (5 000), flat folder
 ```
 
-> [!NOTE]
-> FFHQ-512 and FFHQ-256 are 10,000-image reference sets for FID, KID and precision. Ohayon et al. used the full FFHQ training set, so these distribution-level scores are not directly comparable with the published ones.
-
-### Experiment III
-
-| Dataset | Source | Train / Val / Test |
-|---------|--------|--------------------|
-| ImageNet-mini | [ImageNet 1000 (mini) on Kaggle](https://www.kaggle.com/datasets/ifigotin/imagenetmini-1000) | 34,745 / 3,923 / 5,000 |
-| UT Zappos50K | [Large Shoe Dataset (UT Zappos50k) on Kaggle](https://www.kaggle.com/datasets/aryashah2k/large-shoe-dataset-ut-zappos50k) | 40,066 / 5,000 / 5,000 |
+The datasets used in Experiment III can also be obtained from Kaggle:
+[ImageNet 1000 (mini)](https://www.kaggle.com/datasets/ifigotin/imagenetmini-1000)
+and [Large Shoe Dataset (UT Zappos50k)](https://www.kaggle.com/datasets/aryashah2k/large-shoe-dataset-ut-zappos50k).
 
 The cell **Resizing and Cropping Data** preprocesses all images: it rescales the shorter side to 128 px (Lanczos) and center-crops to 128×128. The test splits are flat folders of 5,000 images in `data/imagenet-mini-centercropped/test` and `data/zap50k_128/test`.
 
 > [!WARNING]
 > The preprocessing cell works in place: it flattens the folder and deletes the original subfolders. Run it on a copy of the downloaded data.
-
-If you use these datasets, please cite the originals:
-- ImageNet: Deng et al., 2009, and Russakovsky et al., 2015.
-- UT Zappos50K: Yu & Grauman, 2014 and 2017.
-
-UT Zappos50K is for academic, non-commercial use only.
-
-The trained Experiment III checkpoints are in [`PMRF/`](PMRF/), which also has the download link. Folders starting with `new_` are refined-configuration runs; all others are initial-configuration runs.
 
 ---
 
@@ -323,4 +315,4 @@ To refer to the thesis itself:
 
 ## License and acknowledgements
 
-This repository builds on the [official PMRF implementation](https://github.com/ohayonguy/PMRF) by Guy Ohayon. The code is MIT-licensed and re-uses components from BasicSR, SwinIR, VQFR, DifFace and k-diffusion (see the original licenses in each folder).](https://github.com/login?client_id=01ab8ac9400c4e429b23&return_to=%2Flogin%2Foauth%2Fauthorize%3Fclient_id%3D01ab8ac9400c4e429b23%26code_challenge%3DtBSfpIIw0kR50NgqZywFT0MLgHFfbk4djD2jVPPLUZA%26code_challenge_method%3DS256%26prompt%3Dselect_account%26redirect_uri%3Dhttps%253A%252F%252Fvscode.dev%252Fredirect%26scope%3Dread%253Auser%2Brepo%2Buser%253Aemail%2Bworkflow%26state%3Dhttp%253A%252F%252F127.0.0.1%253A50411%252Fcallback%253Fnonce%253D9nKqowBzUNWwAAi9sMDYXw%25253D%25253D)
+This repository builds on the [official PMRF implementation](https://github.com/ohayonguy/PMRF) by Guy Ohayon. The code is MIT-licensed and re-uses components from BasicSR, SwinIR, VQFR, DifFace and k-diffusion (see the original licenses in each folder).
