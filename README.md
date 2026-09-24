@@ -66,60 +66,54 @@ One exception: the refined UT Zappos50K posterior-mean predictor used learning r
 
 ## ⚙️ Setup
 
-I worked entirely in Google Colab. To avoid re-cloning the code after every runtime reset, I synced the whole repo to Google Drive (`/content/drive/MyDrive/PMRF`), so it only takes one cell to access it:
+I worked entirely in Google Colab. To avoid re-cloning the code after every runtime reset, I synced the whole repo to Google Drive (`/content/drive/MyDrive/PMRF`).
 
-```python
-from google.colab import drive
-drive.mount("/content/drive")
-```
+Both notebooks now use the same pinned environment and the same **Setup** cells at the top. The Practical Work originally used a condacolab environment with PyTorch 2.3.1 and CUDA 11.8; the notebooks in this repo now use the pinned environment below.
 
-### Experiment III (`pmrf_imagenet_and_zappos_data.ipynb`)
+Run the setup cells in this order in every new runtime:
 
-The environment is pinned inside the notebook. Run the cells under **Setup** in this order:
-
-1. **Installation.** Installs PyTorch 2.11.0 with CUDA 12.8, torchvision 0.26.0, NATTEN 0.21.6, a fixed torch-fidelity commit, and a patched BasicSR 1.4.2. The cell stops early if the runtime is not Python 3.13.
+1. **Installation.** Installs the pinned environment (see below) and applies the BasicSR patches. The cell stops early if the runtime is not Python 3.13.
 2. **Runtime → Restart session.**
-3. **Post-restart cell.** Checks that the installed packages import correctly.
-4. **Mount Google Drive.**
-5. **PMRF compatibility setup.** Checks the NATTEN compatibility patch and makes BasicSR optional (it is only needed for the `difface` degradation). It also sets `TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD=1`, so that self-trained Lightning checkpoints load with the older `torch.load` behaviour.
-6. **Smoke test.** Imports the PMRF modules and confirms that the GPU and NATTEN work.
+3. **Post-restart check.** Prints all package versions and asserts the exact pins. It then runs quick CUDA, NATTEN and dctorch tests.
+4. **Mount Google Drive:**
+   ```python
+   from google.colab import drive
+   drive.mount("/content/drive")
+   ```
+5. **PMRF compatibility setup.** Checks and patches the repository files listed below and sets `TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD=1`.
+6. **Smoke test.** Imports the PMRF modules and builds all degradations except `difface`. It then runs a forward and backward pass through PMRF's NATTEN attention block.
 
-### Experiments I and II (`pmrf_papers_data.ipynb`)
+<details>
+<summary><b>Pinned environment</b></summary>
 
-This notebook uses the environment from my Practical Work:
+| Package | Version |
+|---------|---------|
+| Python | 3.13 |
+| PyTorch / torchvision / torchaudio | 2.11.0 / 0.26.0 / 2.11.0 (`+cu128`, CUDA 12.8) |
+| NATTEN | 0.21.6 (`+torch2110cu128`) |
+| Lightning / PyTorch Lightning | 2.3.3 |
+| NumPy / SciPy | 2.1.3 / 1.15.3 |
+| timm / einops / torch-ema | 1.0.8 / 0.8.0 / 0.3 |
+| transformers / tokenizers / huggingface-hub | 4.46.3 / 0.20.3 / 0.24.5 |
+| lpips / piq | 0.1.4 / 0.8.0 |
+| opencv-python | 4.10.0.84 |
+| wandb | 0.30.0 |
+| dctorch | 0.1.2 (installed with `--no-deps`, since its metadata requires NumPy < 2) |
+| torch-fidelity | pinned commit `5e211a9` from GitHub |
+| BasicSR | 1.4.2, built from source (see patches) |
 
-```bash
-!pip install -q condacolab
-import condacolab, os
-condacolab.install()        # Colab will restart itself once this finishes
+</details>
 
-!conda install -y pytorch==2.3.1 torchvision==0.18.1 torchaudio==2.3.1 pytorch-cuda=11.8 -c pytorch -c nvidia
-!conda install -y lightning==2.3.3 -c conda-forge
+### Patches
 
-!pip install opencv-python==4.10.0.84 timm==1.0.8 wandb==0.17.5 lovely-tensors==0.1.16 torch-fidelity==0.3.0 einops==0.8.0 dctorch==0.1.2 torch-ema==0.3
-!pip install natten==0.17.1+torch230cu118 -f https://shi-labs.com/natten/wheels
-!pip install nvidia-cuda-nvcc-cu11
-!pip install basicsr==1.4.2
-!pip install git+https://github.com/toshas/torch-fidelity.git
-!pip install lpips==0.1.4
-!pip install piq==0.8.0
-!pip install huggingface_hub==0.24.5
-```
+| File | Patch | Applied by |
+|------|-------|------------|
+| BasicSR `setup.py` | `get_version()` reads the version into an explicit namespace. Python 3.13 (PEP 667) makes `locals()` a snapshot, so the original installer fails. | Installation cell (before building BasicSR) |
+| BasicSR `basicsr/data/degradations.py` | Imports `rgb_to_grayscale` from `torchvision.transforms.functional`, because `functional_tensor` no longer exists in torchvision 0.26. | Installation cell |
+| `utils/create_degradation.py` | Wraps the BasicSR imports in `try/except`, so BasicSR is only required for the `difface` degradation. | Compatibility cell, which saves the original as `create_degradation.py.before_optional_basicsr.bak` the first time |
+| `arch/hourglass/image_transformer_v2.py` | NATTEN ≥ 0.21 compatibility: uses `natten.functional.na2d(...)`, with a `has_fused_na` guard. | Already part of this repo. The compatibility cell only checks for it and stops if the file is the unpatched original. |
 
-Then patch BasicSR's outdated torchvision import:
-
-```bash
-FILE=$(python - <<'PY'
-import importlib.metadata, pathlib, sys
-dist = importlib.metadata.distribution("basicsr")
-print(pathlib.Path(dist.locate_file("basicsr/data/degradations.py")))
-PY
-)
-echo "Patching $FILE ..."
-sed -i 's/from torchvision.transforms.functional_tensor import rgb_to_grayscale/from torchvision.transforms.functional import rgb_to_grayscale/' "$FILE"
-# show the patched line for confirmation
-grep -n "rgb_to_grayscale" -A0 -B1 "$FILE" | head
-```
+In addition, `TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD=1` restores the older `torch.load` behaviour, so that the trusted Lightning checkpoints (released and self-trained) load under PyTorch 2.11.
 
 ---
 
@@ -263,6 +257,8 @@ python compute_metrics_blind.py \
 ```
 
 ### Experiment II: controlled face restoration (`pmrf_papers_data.ipynb`)
+
+The notebook first creates the 256×256 test set `data/celeba_256_test`, by bicubic downscaling of `data/celeba_512_validation`.
 
 Inference:
 ```bash
