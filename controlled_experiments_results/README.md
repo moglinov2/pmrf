@@ -1,6 +1,6 @@
-# 📊 Controlled Experiments – Restored-image Results
+# 📊 Controlled Experiments – Restored-image Results - Experiment II
 
-This directory contains the outputs of the four controlled restoration tasks  
+This directory contains the outputs of the four controlled restoration tasks from Experiment II
 (colorization, denoising, inpainting, super-resolution) for various numbers of flow steps \(K\).  
 
 
