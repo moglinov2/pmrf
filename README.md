@@ -5,7 +5,7 @@
 Code for my Bachelor's thesis at the Institute of Machine Learning, Johannes Kepler University Linz (2026).  
 It reproduces and extends *“Posterior-Mean Rectified Flow: Towards Minimum MSE Photo-Realistic Image Restoration”* (Ohayon, Michaeli & Elad, ICLR 2025).
 
-[[Thesis]](LINK_TO_THESIS_PDF) • [[PMRF Paper]](https://arxiv.org/abs/2410.00418) • [[Project Page]](https://pmrf-ml.github.io/) • [[Official Code]](https://github.com/ohayonguy/PMRF) • [[Demo]](https://huggingface.co/spaces/ohayonguy/PMRF)
+[[Thesis]](https://drive.google.com/drive/folders/1oSMSuLFajAJ2W-tLmxUvi37Xg1wrLNRs?usp=sharing) • [[PMRF Paper]](https://arxiv.org/abs/2410.00418) • [[Project Page]](https://pmrf-ml.github.io/) • [[Official Code]](https://github.com/ohayonguy/PMRF) • [[Demo]](https://huggingface.co/spaces/ohayonguy/PMRF)
 
 </div>
 
